@@ -28,14 +28,14 @@ def load_words():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print "Loading word list from file..."
+    print("Loading word list from file...")
     # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r', 0)
+    inFile = open(WORDLIST_FILENAME, 'rb', 0)
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
         wordlist.append(line.strip().lower())
-    print "  ", len(wordlist), "words loaded."
+    print("  ", len(wordlist), "words loaded.")
     return wordlist
 
 def get_frequency_dict(sequence):
@@ -86,7 +86,7 @@ def display_hand(hand):
 
     For example:
        display_hand({'a':1, 'x':2, 'l':3, 'e':1})
-    Should print out something like:
+    Should print() out something like:
        a x x l l l e
     The order of the letters is unimportant.
 
@@ -94,8 +94,8 @@ def display_hand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-            print letter,              # print all on the same line
-    print                              # print an empty line
+            print( letter,  )            # print() all on the same line
+    print()                              # print() an empty line
 
 #
 # Make sure you understand how this function works and what it does!
@@ -113,7 +113,7 @@ def deal_hand(n):
     returns: dictionary (string -> int)
     """
     hand={}
-    num_vowels = n / 3
+    num_vowels = int(n / 3) #******* I CHANGED THIS (MIGHT BREAK IT) *****
     
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
@@ -193,7 +193,7 @@ def play_hand(hand, word_list):
       word_list: list of lowercase strings
     """
     # TO DO ...
-    print "play_hand not implemented." # replace this with your code...
+    print("play_hand not implemented.") # replace this with your code...
 
 #
 # Problem #5: Playing a game
@@ -215,7 +215,7 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO ...
-    print "play_game not implemented."         # delete this once you've completed Problem #4
+    print("play_game not implemented.")         # delete this once you've completed Problem #4
     play_hand(deal_hand(HAND_SIZE), word_list) # delete this once you've completed Problem #4
     
     ## uncomment the following block of code once you've completed Problem #4
@@ -225,14 +225,14 @@ def play_game(word_list):
 #        if cmd == 'n':
 #            hand = deal_hand(HAND_SIZE)
 #            play_hand(hand.copy(), word_list)
-#            print
+#            print()
 #        elif cmd == 'r':
 #            play_hand(hand.copy(), word_list)
-#            print
+#            print()
 #        elif cmd == 'e':
 #            break
 #        else:
-#            print "Invalid command."
+#            print() "Invalid command."
 
 #
 # Build data structures used for entire session and play game
