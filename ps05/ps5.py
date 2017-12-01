@@ -30,7 +30,7 @@ def load_words():
     """
     print("Loading word list from file...")
     # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'rb', 0)
+    inFile = open(WORDLIST_FILENAME, 'r', encoding='ascii')
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
@@ -169,7 +169,21 @@ def is_valid_word(word, hand, word_list):
     hand: dictionary (string -> int)
     word_list: list of lowercase strings
     """
-    # TO DO ...
+
+    for letter in word:
+        if hand.get(letter, 0) == 0: #if letter is not in hand (or letter has run out)
+            return False
+        hand[letter] = hand.get(letter,0) -1 #decrement letter in hand
+
+    if word in word_list:
+        print(word)
+        return True
+    else: 
+        print(word)
+        return False
+
+# word_list = load_words()
+# print(is_valid_word('honey', {'n': 0, 'h': 1, 'o': 1, 'y': 1, 'd': 1, 'w': 1, 'e': 2}, word_list))
 
 #
 # Problem #4: Playing a hand
