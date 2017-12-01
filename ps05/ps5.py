@@ -120,7 +120,7 @@ def deal_hand(n):
     returns: dictionary (string -> int)
     """
     hand={}
-    num_vowels = int(n / 3) #******* I CHANGED THIS (MIGHT BREAK IT) *****
+    num_vowels = int(n / 3) #******* I CHANGED THIS FOR PYTHON3 *****
     
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
@@ -151,7 +151,10 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ...
+    
+    for letter in word:
+        hand[letter] = hand.get(letter,0) - 1
+    return hand
 
 #
 # Problem #3: Test word validity
