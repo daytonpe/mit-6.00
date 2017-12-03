@@ -101,7 +101,7 @@ def display_hand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-            print( letter,  )            # print() all on the same line
+            print( letter, end=' ' )            # print() all on the same line
     print()                              # print() an empty line
 
 #
@@ -216,8 +216,21 @@ def play_hand(hand, word_list):
       hand: dictionary (string -> int)
       word_list: list of lowercase strings
     """
-    # TO DO ...
-    print("play_hand not implemented.") # replace this with your code...
+    score = 0
+    display_hand(hand)
+    guess = input("Enter a word:")
+    
+    while guess != '.':
+        if (is_valid_word(guess, hand, word_list)):
+            update_hand(hand, guess)
+            score = score + get_word_score(word, HAND_SIZE)
+        else: 
+            print("Invalid guess. Try again:")
+    print(score)
+
+hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+word = "quail"
+play_hand(hand, word)
 
 #
 # Problem #5: Playing a game
