@@ -274,24 +274,25 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO ...
-    print("play_game not implemented.")         # delete this once you've completed Problem #4
-    play_hand(deal_hand(HAND_SIZE), word_list) # delete this once you've completed Problem #4
+    # print("play_game not implemented.")         # delete this once you've completed Problem #4
+    # play_hand(deal_hand(HAND_SIZE), word_list) # delete this once you've completed Problem #4
     # play_hand({'n': 1, 'h': 1, 'o': 1, 'y': 1, 'd':1, 'w':1, 'e': 2}, word_list)
     ## uncomment the following block of code once you've completed Problem #4
-#    hand = deal_hand(HAND_SIZE) # random init
-#    while True:
-#        cmd = raw_input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
-#        if cmd == 'n':
-#            hand = deal_hand(HAND_SIZE)
-#            play_hand(hand.copy(), word_list)
-#            print()
-#        elif cmd == 'r':
-#            play_hand(hand.copy(), word_list)
-#            print()
-#        elif cmd == 'e':
-#            break
-#        else:
-#            print() "Invalid command."
+   
+    hand = deal_hand(HAND_SIZE) # random init
+    while True:
+        cmd = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+        if cmd == 'n':
+            hand = deal_hand(HAND_SIZE)
+            play_hand(hand.copy(), word_list)
+            print()
+        elif cmd == 'r':
+            play_hand(hand.copy(), word_list)
+            print()
+        elif cmd == 'e':
+            break
+        else:
+            print("Invalid command.") 
 
 #
 # Build data structures used for entire session and play game
