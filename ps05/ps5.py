@@ -178,10 +178,10 @@ def is_valid_word(word, hand, word_list):
         hand2[letter] = hand2.get(letter,0) -1 #decrement letter in hand
 
     if word in word_list:
-        print(word)
+        # print(word)
         return True
     else: 
-        print(word)
+        # print(word)
         return False
 
 # word_list = load_words()
@@ -220,39 +220,39 @@ def play_hand(hand, word_list):
     """
     score = 0
     
-    
-    go = True
+    while(True):
 
-    while(go):
+        if sum(hand.values())==0:
+            break;
+
         print()
-        print(hand)
         print('Current Hand')
         display_hand(hand)
-        print()
+        # print(sum(hand.values()))
         
         guess = input("Enter word, or a . to indicate that you are finished:")
         
-        if guess == '.' or all(value <= 0 for value in hand.values()):
-            go = False
-            print()
-            continue
 
+        if guess == '.' :
+            print()
+            break
         
         if (is_valid_word(guess, hand, word_list)==False):
             print()
             print("Invalid guess. Try again:")
-            print(hand)
             print()
 
         else: 
             hand = update_hand(hand, guess)
-            print('hand updated')
-            score = score + get_word_score(guess, HAND_SIZE)
-            print(hand)
+            points = get_word_score(guess, HAND_SIZE)
+            score = score + points
+            print(str(guess)+' earned '+str(points)+' points.')
+            print('Total Score: '+str(score)) 
             print()
             
     
-    print('Score: '+str(score))     
+    print('Total Score: '+str(score))
+    return 0     
 
 #
 # Problem #5: Playing a game
@@ -276,7 +276,7 @@ def play_game(word_list):
     # TO DO ...
     print("play_game not implemented.")         # delete this once you've completed Problem #4
     play_hand(deal_hand(HAND_SIZE), word_list) # delete this once you've completed Problem #4
-    
+    # play_hand({'n': 1, 'h': 1, 'o': 1, 'y': 1, 'd':1, 'w':1, 'e': 2}, word_list)
     ## uncomment the following block of code once you've completed Problem #4
 #    hand = deal_hand(HAND_SIZE) # random init
 #    while True:
