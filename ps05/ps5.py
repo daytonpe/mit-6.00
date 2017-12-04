@@ -170,10 +170,12 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
 
+    hand2 = hand.copy()
+
     for letter in word:
-        if hand.get(letter, 0) == 0: #if letter is not in hand (or letter has run out)
+        if hand2.get(letter, 0) == 0: #if letter is not in hand (or letter has run out)
             return False
-        hand[letter] = hand.get(letter,0) -1 #decrement letter in hand
+        hand2[letter] = hand2.get(letter,0) -1 #decrement letter in hand
 
     if word in word_list:
         print(word)
@@ -217,27 +219,47 @@ def play_hand(hand, word_list):
       word_list: list of lowercase strings
     """
     score = 0
-    display_hand(hand)
-    guess = input("Enter a word:")
     
-    while guess != '.':
-        if (is_valid_word(guess, hand, word_list)):
-            update_hand(hand, guess)
-            score = score + get_word_score(word, HAND_SIZE)
-        else: 
-            print("Invalid guess. Try again:")
-    print(score)
+    
+    go = True
 
-hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
-word = "quail"
-play_hand(hand, word)
+    while(go):
+        print()
+        print(hand)
+        print('Current Hand')
+        display_hand(hand)
+        print()
+        
+        guess = input("Enter word, or a . to indicate that you are finished:")
+        
+        if guess == '.' or all(value <= 0 for value in hand.values()):
+            go = False
+            print()
+            continue
+
+        
+        if (is_valid_word(guess, hand, word_list)==False):
+            print()
+            print("Invalid guess. Try again:")
+            print(hand)
+            print()
+
+        else: 
+            hand = update_hand(hand, guess)
+            print('hand updated')
+            score = score + get_word_score(guess, HAND_SIZE)
+            print(hand)
+            print()
+            
+    
+    print('Score: '+str(score))     
 
 #
 # Problem #5: Playing a game
 # Make sure you understand how this code works!
 # 
 def play_game(word_list):
-    """
+    """k
     Allow the user to play an arbitrary number of hands.
 
     * Asks the user to input 'n' or 'r' or 'e'.
