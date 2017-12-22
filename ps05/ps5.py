@@ -178,10 +178,8 @@ def is_valid_word(word, hand, word_list):
         hand2[letter] = hand2.get(letter,0) -1 #decrement letter in hand
 
     if word in word_list:
-        # print(word)
         return True
     else: 
-        # print(word)
         return False
 
 # word_list = load_words()
